@@ -24,6 +24,8 @@ import { Authentication } from './shared/auth/authentication.service';
 import { UserResolve } from './shared/auth/user-resolve.service';
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 
+import { FilterContactArray } from './component/filters/filterContacts.pipe';
+
 
 @NgModule({
     declarations: [
@@ -33,7 +35,8 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
         SignInComponent,
         SignUpComponent,
         ContactsComponent,
-        ContactFormComponent
+        ContactFormComponent,
+        FilterContactArray
     ],
     imports: [
         BrowserModule,

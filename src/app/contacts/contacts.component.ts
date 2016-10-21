@@ -5,6 +5,8 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Contact } from '../shared/contacts/contact';
 import { ContactsService } from '../shared/contacts/contacts.service';
 
+import { FilterContactArray } from '../component/filters/filterContacts.pipe';
+
 @Component({
     selector : 'contacts',
     templateUrl : './app/contacts/contacts.component.html',
