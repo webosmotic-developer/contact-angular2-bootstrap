@@ -1,0 +1,41 @@
+<div class="page-container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <span class="panel-title">Contact List</span>
+            <button class="pull-right btn-xs btn-primary" (click)="fnRedirectToAddContact()">
+                <span class="glyphicon glyphicon-plus"></span></button>
+        </div>
+        <div *ngIf="contactList.length !== 0" class="panel-body">
+            <div class="list-group m-b-10">
+                <a href="javascript:void(0);" class="list-group-item"  *ngFor="let contact of contactList">
+                  <span class="h4">{{contact.name}}</span><br>
+                  <span class="h6">{{contact.email}}</span><br>
+                  <span class="h6">{{contact.phone}}</span>
+                  <div class="pull-right">
+                    <button [routerLink]="['/contactform', contact._id]" class="btn btn-xs btn-info">
+                        <span class="glyphicon glyphicon-edit"></span></button>
+                    <button class="btn btn-xs btn-danger" (click)="open(contact)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                  </div>
+                </a>
+            </div>
+        </div>
+        <div *ngIf="contactList.length === 0" class="panel-body">
+            <h4 class="text-center">Click&nbsp;&nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;to add contact.</h4>
+        </div>
+    </div>
+
+    <modal #DeleteModal [keyboard]="false" [backdrop]="'static'">
+        <modal-header [show-close]="true">
+            <h4 class="modal-title">Delete contact</h4>
+        </modal-header>
+        <modal-body>
+            Would you like to delete this contact ?
+        </modal-body>
+        <modal-footer>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.dismiss()">Cancel</button>
+            <button type="button" class="btn btn-danger" (click)="fnDeleteContact(deleteContactId)">Delete</button>
+        </modal-footer>
+    </modal>
+</div>

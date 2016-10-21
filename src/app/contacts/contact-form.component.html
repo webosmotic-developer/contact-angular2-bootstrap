@@ -1,0 +1,72 @@
+<div class="col-sm-12 auth-form">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading form-heading">
+                <h3 class="text-center m-n"><strong>Contact-Form</strong></h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form class="form-horizontal col-md-12" name="form" #contactForm="ngForm"
+                          (ngSubmit)="contactForm.form.valid && fnSaveContact(contact)" novalidate>
+
+                            <div class="form-group"
+                                 [ngClass]="{ 'has-error': (contactForm.submitted || name.touched) && !name.valid }">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <input type="text" class="form-control" #name="ngModel"
+                                           [(ngModel)]="contact.name" name="name" placeholder="Enter a name" required/>
+                                </div>
+                                <div class="help-block" *ngIf="(contactForm.submitted || email.touched) && !email.valid">
+                                    <small *ngIf="name.model === ''">Name is required.</small>
+                                    <small *ngIf="name.model !== '' && !name.valid" >
+                                        Enter valid name.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group"
+                                 [ngClass]="{ 'has-error': (contactForm.submitted || email.touched) && !email.valid }">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input type="email" class="form-control" #email="ngModel"
+                                           [(ngModel)]="contact.email" name="email" placeholder="Enter a email"
+                                           pattern='[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}' required/>
+                                </div>
+                                <div class="help-block" *ngIf="(contactForm.submitted || email.touched) && !email.valid">
+                                    <small *ngIf="email.model === ''">Email is required.</small>
+                                    <small *ngIf="email.model !== '' && !email.valid" >
+                                        Enter valid email address.
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="form-group"
+                                 [ngClass]="{ 'has-error': (contactForm.submitted || phone.touched) && !phone.valid }">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-phone"></i></span>
+                                    <input type="text" class="form-control" #phone="ngModel"
+                                           [(ngModel)]="contact.phone" name="phone" placeholder="Enter a phone number"
+                                           pattern='^(\+91-|\+91|0)?\d{10}$' required/>
+                                </div>
+                                <div class="help-block" *ngIf="(contactForm.submitted || phone.touched) && !phone.valid">
+                                    <small *ngIf="phone.model === ''">phone is required.</small>
+                                    <small *ngIf="phone.model !== '' && !phone.valid" >
+                                        Enter valid phone number.
+                                    </small>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group m-b-0">
+                                <div class="controls">
+                                    <button type="submit" class="btn btn-success" [disabled]="!contactForm.form.valid">Save</button>
+                                    <button type="reset" class="btn btn-danger" (click)="fnResetForm()">Cancel</button>
+                                    <span class="pull-right m-t-10">Back to contact list? <a [routerLink]="['/contacts']">Click here</a></span>
+                                </div>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,90 @@
+<navbar></navbar>
+<div class="col-sm-12 auth-form">
+    <div class="col-sm-6 col-sm-offset-3">
+        <div class="panel panel-default">
+            <div class="panel-heading form-heading">
+                <h3 class="text-center m-n"><strong>Sign Up</strong></h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <form class="form-horizontal col-md-12" name="form" #registerForm="ngForm"
+                          (ngSubmit)="registerForm.form.valid && fnSignUp(user)" novalidate>
+
+                        <div class="form-group"
+                             [ngClass]="{ 'has-error': (registerForm.submitted || name.touched) && !name.valid }">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text" class="form-control" #name="ngModel"
+                                       [(ngModel)]="user.name" name="name" placeholder="Enter a name" required/>
+                            </div>
+                            <div class="help-block" *ngIf="(registerForm.submitted || name.touched) && !name.valid">
+                                <small *ngIf="name.model === '' && !name.valid">Name is required.</small>
+                                <small *ngIf="name.model !== '' && !name.valid" >
+                                    Enter valid name.{{user.name}}
+                                </small>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group"
+                             [ngClass]="{ 'has-error': (registerForm.submitted || email.touched) && !email.valid }">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="email" class="form-control" #email="ngModel"
+                                       [(ngModel)]="user.email" name="email" placeholder="Enter a email"
+                                       pattern='[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}' required/>
+                            </div>
+                            <div class="help-block" *ngIf="(registerForm.submitted || email.touched) && !email.valid">
+                                <small *ngIf="email.model === ''">Email is required.</small>
+                                <small *ngIf="email.model !== '' && !email.valid" >
+                                    Enter valid email address.
+                                </small>
+                            </div>
+                        </div>
+
+                        <div class="form-group"
+                             [ngClass]="{ 'has-error': (registerForm.submitted || password.touched) && !password.valid }">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input type="password" class="form-control" name="password"
+                                       [(ngModel)]="user.password" #password="ngModel"
+                                       placeholder="Enter a Password" required/>
+                            </div>
+                            <div class="help-block" *ngIf="(registerForm.submitted || password.touched) && !password.valid">
+                                <small *ngIf="!password.valid">Password is required.</small>
+                            </div>
+                        </div>
+
+                        <div class="form-group"
+                             [ngClass]="{ 'has-error': (registerForm.submitted || confpassword.touched) && !confpassword.valid }">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input type="password" class="form-control" name="confpassword"
+                                       [(ngModel)]="user.confpassword" #confpassword="ngModel"
+                                       required  placeholder="Enter Confirm Password"/>
+                            </div>
+                            <div class="help-block" *ngIf="(registerForm.submitted || confpassword.touched) && !confpassword.valid">
+                                <small *ngIf="!confpassword.valid">Confirm password is required.</small>
+                                <small *ngIf="confpassword.valid && (password.model != confpassword.model)">
+                                    Password does not match
+                                </small>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <!-- Button -->
+                            <div class="controls">
+                                <button type="submit" class="btn btn-success">Sign Up</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="panel-footer">
+               Already have an account! <a routerLink="/login" routerLinkActive="active">Sign In Here</a>
+            </div>
+        </div>
+    </div>
+</div>
