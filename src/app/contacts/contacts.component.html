@@ -1,31 +1,36 @@
-<div class="page-container">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <span class="panel-title">Contact List</span>
-            <button class="pull-right btn-xs btn-primary" (click)="fnRedirectToAddContact()">
+<div class="navbar-fixed-top contacts-header">
+    <div class="col-sm-12">
+        <div class="col-sm-2 col-xs-3 m-t-10 p-l-0">
+            <span class="h4">Contacts</span>
+        </div>
+        <div class="col-sm-10 col-xs-9 m-t-7 p-r-0 text-right">
+            <input type="text" [(ngModel)]="contactSearch" placeholder="Search">
+            <button class="btn-xs btn-primary " (click)="fnRedirectToAddContact()">
                 <span class="glyphicon glyphicon-plus"></span></button>
         </div>
-        <div class="panel-body">
-            <div *ngIf="isLoading" class="text-center">
-                <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
-            </div>
-            <div *ngIf="!isLoading && contactList.length !== 0" class="list-group m-b-10">
-                <a href="javascript:void(0);" class="list-group-item"  *ngFor="let contact of contactList">
-                  <span class="h4">{{contact.name}}</span><br>
-                  <span class="h6">{{contact.email}}</span><br>
-                  <span class="h6">{{contact.phone}}</span>
-                  <div class="pull-right">
+    </div>
+</div>
+<div class="contacts-content">
+    <div class="col-sm-12 col-md-12">
+        <div *ngIf="isLoading" class="text-center">
+            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
+        </div>
+        <div *ngIf="!isLoading && contactList.length !== 0" class="list-group m-b-10">
+            <a href="javascript:void(0);" class="list-group-item"  *ngFor="let contact of contactList">
+                <span class="h4">{{contact.name}}</span><br>
+                <span class="h6">{{contact.email}}</span><br>
+                <span class="h6">{{contact.phone}}</span>
+                <div class="pull-right">
                     <button [routerLink]="['/contactform', contact._id]" class="btn btn-xs btn-info">
                         <span class="glyphicon glyphicon-edit"></span></button>
                     <button class="btn btn-xs btn-danger" (click)="open(contact)">
                         <span class="glyphicon glyphicon-trash"></span>
                     </button>
-                  </div>
-                </a>
-            </div>
-            <div *ngIf="!isLoading && contactList.length === 0" class="text-center">
-                <h4>Click&nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;to add contact.</h4>
-            </div>
+                </div>
+            </a>
+        </div>
+        <div *ngIf="!isLoading && contactList.length === 0" class="text-center">
+            <h4>Click&nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;to add contact.</h4>
         </div>
     </div>
 
