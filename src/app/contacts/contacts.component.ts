@@ -2,8 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { Router } from '@angular/router';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import {Contact} from '../shared/contacts/contact';
-import {ContactsService} from '../shared/contacts/contacts.service';
+import { Contact } from '../shared/contacts/contact';
+import { ContactsService } from '../shared/contacts/contacts.service';
 
 @Component({
     selector : 'contacts',
@@ -12,7 +12,6 @@ import {ContactsService} from '../shared/contacts/contacts.service';
 })
 export class ContactsComponent {
 
-    //contact : Contact;
     contactList : Array<Contact> = [];
     deleteContactId : any;
 
@@ -46,8 +45,7 @@ export class ContactsComponent {
                 )
     }
 
-    fnDeleteContact(contactId){
-        console.log('id in ',contactId);
+    fnDeleteContact(contactId:any){
         this._contactsService.fnDeleteContact(contactId)
             .subscribe(
             (data) => {

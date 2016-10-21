@@ -27,7 +27,7 @@ export class NavbarComponent{
 
     fnLogOut(){
         this.isLoggedIn = undefined;
-        Config.user = {};
+        Config.user = {'_id':'','name':''};
         this._cookieService.remove('AUTH_TOKEN');
         this.router.navigate(['/login']);
     }

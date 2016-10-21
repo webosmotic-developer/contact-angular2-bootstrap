@@ -1,12 +1,11 @@
-import {Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-//import {CookieService} from 'angular2-cookie/core.js';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
-import {Contact} from '../shared/contacts/contact';
-import {ContactsService} from '../shared/contacts/contacts.service';
+import { Contact } from '../shared/contacts/contact';
+import { ContactsService } from '../shared/contacts/contacts.service';
 
-import {Config} from '../shared/config';
+import { Config } from '../shared/config';
 
 
 @Component({

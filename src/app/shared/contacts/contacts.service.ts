@@ -1,8 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Http, Headers, Response } from "@angular/http";
 import { Observable } from "rxjs/Observable";
-//import { AppService } from "./app.service";
-//import {CookieService} from 'angular2-cookie/core.js';
 import { Authentication } from "../auth/authentication.service";
 import { Config } from "../config";
 
@@ -21,7 +19,7 @@ export class ContactsService{
     }
 
 
-    fnSaveContact(contact,contactId) : Observable<any>{
+    fnSaveContact(contact:any,contactId:any) : Observable<any>{
         if(contactId){
             return this.http.put(Config.apiUrl + '/api/contacts/' + contactId, {
                     name : contact.name,
@@ -42,12 +40,12 @@ export class ContactsService{
     }
 
 
-    fnGetContact(contactId) : Observable<any>{
+    fnGetContact(contactId:any) : Observable<any>{
         return this.http.get(Config.apiUrl + "/api/contacts/"+ contactId, {headers: this._authService.fnCreateHeader()})
             .map(response => response.json());
     }
 
-    fnDeleteContact(contactId) : Observable<any>{
+    fnDeleteContact(contactId:any) : Observable<any>{
         return this.http.delete(Config.apiUrl + "/api/contacts/"+ contactId, {headers: this._authService.fnCreateHeader()});
     }
 

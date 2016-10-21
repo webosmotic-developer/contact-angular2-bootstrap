@@ -8,19 +8,15 @@ export class NotAuthenticateGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
         let url: string = state.url;
-        console.log('let url not-auth: ',url,this.fnCheckAuthenticate(url));
         return this.fnCheckAuthenticate(url);
     }
 
     fnCheckAuthenticate(url: string): boolean {
 
         if (!this._cookieService.get('AUTH_TOKEN')) {
-            console.log('this._cookieService.get(AUTH_TOKEN):false : ',url);
             return true;
         }
 
-        console.log('else:false: ',url);
-        // Navigate to the login page with extras
         this.router.navigate(['/contacts']);
         return false;
     }

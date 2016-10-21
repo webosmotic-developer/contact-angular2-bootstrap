@@ -43,7 +43,6 @@ export class Authentication {
             })
         }).map(response => response.json())
             .do(data => {
-                //this._cookieService.putObject('current_user', data.user);
                 this._cookieService.put('AUTH_TOKEN', data.token);
             }).catch(this.fnHandleError);
 

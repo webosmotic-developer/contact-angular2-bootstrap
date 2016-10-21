@@ -5,10 +5,7 @@ import {HttpModule, JsonpModule} from '@angular/http';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
-
-
 import './rxjs-extensions';
-
 
 import {Component} from '@angular/core';
 import {AppComponent} from './app.component';
@@ -20,7 +17,6 @@ import {SignUpComponent} from './signup/signup.component';
 import {ContactsComponent} from './contacts/contacts.component';
 import {ContactFormComponent} from './contacts/contact-form.component';
 
-import {ContactModalComponent} from './contacts/modal/contact-modal.component';
 
 import { AuthenticateGuard } from './shared/auth/authenticate-guard';
 import { NotAuthenticateGuard } from './shared/auth/not-authenticate-guard';
@@ -37,8 +33,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
         SignInComponent,
         SignUpComponent,
         ContactsComponent,
-        ContactFormComponent,
-        ContactModalComponent
+        ContactFormComponent
     ],
     imports: [
         BrowserModule,
