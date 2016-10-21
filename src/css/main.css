@@ -11,31 +11,6 @@ h1 {
     margin-bottom: 22px;
 }
 
-a {
-    text-decoration: none;
-    color: #337ab7;
-}
-
-.navbar{
-    background-color: #337ab7;
-    color: whitesmoke;
-}
-
-.navbar .navbar-header .navbar-brand,
-.navbar-nav  li>a{
-    color: whitesmoke !important;
-}
-
-.nav .open a,
-.nav li > a:hover,
-.nav li > a:focus{
-    background-color: transparent !important;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
 .auth-form{
     margin-top: 135px;
 }
@@ -44,14 +19,6 @@ a:hover {
     margin-top: 50px;
     padding: 5px;
 }
-
-.user-menu li{
-    padding-left: 20px;
-    cursor: pointer;
-    text-decoration: none;
-    color: black;
-}
-
 
 .form-heading h3{
     margin: 0;
