@@ -19,7 +19,6 @@ export class ContactFormComponent{
     paramContactId : string = null;
     contact : Contact;
 
-
     constructor(private router: Router, private _contactService: ContactsService,
                  private activeRoute: ActivatedRoute, public toastr : ToastsManager){
         this.contact = new Contact();
@@ -35,6 +34,7 @@ export class ContactFormComponent{
             this.contact.phone = "";
             this.paramsSub.unsubscribe();
         }
+
     }
 
     fnSaveContact(contact:any){

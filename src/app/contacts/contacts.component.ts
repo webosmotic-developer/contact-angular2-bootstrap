@@ -14,6 +14,7 @@ export class ContactsComponent {
 
     contactList : Array<Contact> = [];
     deleteContactId : any;
+    isLoading : boolean = true;
 
     @ViewChild('DeleteModal')
         modal: ModalComponent;
@@ -33,16 +34,18 @@ export class ContactsComponent {
 
 
     fnGetContacts(){
-          this._contactsService.fnGetContactsList()
-                .subscribe(
-                    (data) => {
-                        this.contactList = data;
-                    },
-                    (error) => {
-                        this.toastr.error('There are something wrong! '+error, 'For getting contact.', {toastLife: 3000});
-                    }
+        this.isLoading = true;
+        this._contactsService.fnGetContactsList()
+            .subscribe(
+                (data) => {
+                    this.contactList = data;
+                    this.isLoading = false;
+                },
+                (error) => {
+                    this.toastr.error('There are something wrong! '+error, 'For getting contact.', {toastLife: 3000});
+                }
 
-                )
+            )
     }
 
     fnDeleteContact(contactId:any){
