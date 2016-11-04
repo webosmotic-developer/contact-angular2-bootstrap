@@ -11,6 +11,17 @@ h1 {
     margin-bottom: 22px;
 }
 
+.navbar-toggle {
+    display: block;
+    float:left
+}
+
+@media(min-width:768px){
+    .navbar-toggle {
+        float:left
+    }
+}
+
 .auth-form{
     margin-top: 135px;
 }
@@ -56,3 +67,22 @@ h1 {
 .contacts-content{
     margin-top: 100px;
 }
+
+.right-nav-menu {
+    margin-top:15px;
+}
+
+.right-nav-menu ul .dropdown-menu{
+    margin-top:15px;
+    margin-left: -73px;
+}
+
+.right-nav-menu ul li{
+    list-style: none;
+}
+
+.right-nav-menu ul .user-label{
+    text-decoration: none;
+    color: #eee;
+}
+
