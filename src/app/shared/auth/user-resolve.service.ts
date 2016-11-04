@@ -21,8 +21,7 @@ export class UserResolve implements Resolve<any> {
     private extractData(res:Response) {
         let body = res.json();
         //Logged in user.
-        Config.user._id = body._id;
-        Config.user.name = body.name;
+        Config.user = body;
         return body || {};
     }
 

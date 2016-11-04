@@ -1,103 +1,109 @@
 <div class="page-container">
     <div class="container-fluid p-l-0 p-r-0">
-            <div class="col-sm-6 panel panel-default p-0">
-                <div class="panel-heading ">Update profile</div>
-                <div class="panel-body">
-                    <form class="form-horizontal col-md-12" name="updateProfileForm" #updateProfileForm="ngForm"
-                           (ngSubmit)="updateProfileForm.form.valid && fnUpdateProfile(contact)" novalidate>
-                        <div class="form-group" [ngClass]="{ 'has-error': (updateProfileForm.submitted || name.touched) && !name.valid }">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user" style="width: 14px;"></i></span>
-                                <input type="text" class="form-control" #name="ngModel"
-                                       [(ngModel)]="contact.name" name="name" placeholder="Name*" required/>
-                            </div>
-                            <div class="help-block" *ngIf="(updateProfileForm.submitted || name.touched) && !name.valid">
-                                <small *ngIf="name.model === ''">Name is required.</small>
-                                <small *ngIf="name.model !== '' && !name.valid" >
-                                    Enter valid name.
-                                </small>
-                            </div>
+        <div class="col-sm-6 panel panel-default p-0">
+            <div class="panel-heading ">Update profile</div>
+            <div class="panel-body">
+                <form class="form-horizontal col-md-12" name="updateProfileForm" #updateProfileForm="ngForm"
+                      (ngSubmit)="updateProfileForm.form.valid && fnUpdateProfile(user)" novalidate>
+                    <div class="form-group" [ngClass]="{ 'has-error': (updateProfileForm.submitted || name.touched) && !name.valid }">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user" style="width: 14px;"></i></span>
+                            <input type="text" class="form-control" #name="ngModel"
+                                   [(ngModel)]="user.name" name="name" placeholder="Name*" required/>
                         </div>
-                        <div class="form-group"
-                             [ngClass]="{ 'has-error': (updateProfileForm.submitted || email.touched) && !email.valid }">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                <input type="email" class="form-control" #email="ngModel"
-                                       [(ngModel)]="contact.email" name="email" placeholder="Email*"
-                                       pattern='[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}' required/>
-                            </div>
-                            <div class="help-block" *ngIf="(updateProfileForm.submitted || email.touched) && !email.valid">
-                                <small *ngIf="email.model === ''">Email is required.</small>
-                                <small *ngIf="email.model !== '' && !email.valid" >
-                                    Enter valid email address.
-                                </small>
-                            </div>
+                        <div class="help-block m-b-0" *ngIf="(updateProfileForm.submitted || name.touched) && !name.valid">
+                            <small *ngIf="name.model === ''">Name is required.</small>
+                            <small *ngIf="name.model !== '' && !name.valid" >
+                                Enter valid name.
+                            </small>
                         </div>
-                        <div class="form-group" [ngClass]="{ 'has-error': (updateProfileForm.submitted || role.touched) && !role.valid }">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-user-md" style="width: 14px;"></i></span>
-                                <input type="text" class="form-control" #role="ngModel"
-                                       [(ngModel)]="contact.role" name="role" placeholder="Role*" required/>
-                            </div>
-                            <div class="help-block" *ngIf="(updateProfileForm.submitted || role.touched) && !role.valid">
-                                <small *ngIf="role.model === ''">Role is required.</small>
-                                <small *ngIf="role.model !== '' && !role.valid" >
-                                    Enter valid role.
-                                </small>
-                            </div>
+                    </div>
+                    <div class="form-group"
+                         [ngClass]="{ 'has-error': (updateProfileForm.submitted || email.touched) && !email.valid }">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                            <input type="email" class="form-control" #email="ngModel"
+                                   [(ngModel)]="user.email"  name="email" placeholder="Email*"
+                                   pattern='[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}' required/>
                         </div>
-                    </form>
-                </div>
+                        <div class="help-block m-b-0" *ngIf="(updateProfileForm.submitted || email.touched) && !email.valid">
+                            <small *ngIf="email.model === ''">Email is required.</small>
+                            <small *ngIf="email.model !== '' && !email.valid" >
+                                Enter valid email address.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group" [ngClass]="{ 'has-error': (updateProfileForm.submitted || role.touched) && !role.valid }">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user-md" style="width: 14px;"></i></span>
+                            <input type="text" class="form-control" #role="ngModel"
+                                   [(ngModel)]="user.role" name="role" placeholder="Role*" required/>
+                        </div>
+                        <div class="help-block m-b-0" *ngIf="(updateProfileForm.submitted || role.touched) && !role.valid">
+                            <small *ngIf="role.model === ''">Role is required.</small>
+                            <small *ngIf="role.model !== '' && !role.valid" >
+                                Enter valid role.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group m-b-0">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-success" [disabled]="!updateProfileForm.form.valid">Update</button>
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="col-sm-6 panel panel-default p-0">
-                <div class="panel-heading">Change Password</div>
-                <div class="panel-body">
-                    <form class="form-horizontal col-md-12" name="changePwdForm" #changePwdForm="ngForm"
-                          (ngSubmit)="changePwdForm.form.valid && fnChangePassword(user)" novalidate>
-                        <div class="form-group" [ngClass]="{ 'has-error': (changePwdForm.submitted || password.touched) && !password.valid }">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-lock" style="width: 14px;" aria-hidden="true"></i></span>
-                                <input type="password" class="form-control" #password="ngModel"
-                                       [(ngModel)]="user.password" name="password" placeholder="Current Password*" required/>
-                            </div>
-                            <div class="help-block" *ngIf="(changePwdForm.submitted || password.touched) && !password.valid">
-                                <small *ngIf="password.model === ''">Password is required.</small>
-                                <small *ngIf="password.model !== '' && !password.valid" >
-                                    Enter valid name.
-                                </small>
-                            </div>
+        </div>
+        <div class="col-sm-6 panel panel-default p-0">
+            <div class="panel-heading">Change Password</div>
+            <div class="panel-body">
+                <form class="form-horizontal col-md-12" name="changePwdForm" #changePwdForm="ngForm"
+                      (ngSubmit)="changePwdForm.form.valid && fnChangePassword(user)" novalidate>
+
+                    <div class="form-group" [ngClass]="{ 'has-error': (changePwdForm.submitted || password.touched) && !password.valid }">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock" style="width: 14px;" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" #password="ngModel"
+                                   [(ngModel)]="user.password" name="password" placeholder="Current Password*" required/>
                         </div>
-                        <div class="form-group"
-                             [ngClass]="{ 'has-error': (changePwdForm.submitted || newPassword.touched) && !newPassword.valid }">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-                                <input type="email" class="form-control" #newPassword="ngModel"
-                                       [(ngModel)]="user.newPassword" name="newPassword" placeholder="New Password*" required/>
-                            </div>
-                            <div class="help-block" *ngIf="(changePwdForm.submitted || newPassword.touched) && !newPassword.valid">
-                                <small *ngIf="newPassword.model === ''">New Password is required.</small>
-                                <small *ngIf="newPassword.model !== '' && !newPassword.valid" >
-                                    Enter valid New Password.
-                                </small>
-                            </div>
+                        <div class="help-block m-b-0" *ngIf="(changePwdForm.submitted || password.touched) && !password.valid">
+                            <small *ngIf="!password.valid">password is required.</small>
                         </div>
-                        <div class="form-group"
-                             [ngClass]="{ 'has-error': (changePwdForm.submitted || confpassword.touched) && !confpassword.valid }">
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
-                                <input type="password" class="form-control" name="confpassword"
-                                       [(ngModel)]="user.confpassword" #confpassword="ngModel"
-                                       required  placeholder="Confirm Password*"/>
-                            </div>
-                            <div class="help-block" *ngIf="(changePwdForm.submitted || confpassword.touched) && !confpassword.valid">
-                                <small *ngIf="!confpassword.valid">Confirm password is required.</small>
-                                <small *ngIf="confpassword.valid && (password.model != confpassword.model)">
-                                    Password does not match
-                                </small>
-                            </div>
+                    </div>
+
+                    <div class="form-group"
+                         [ngClass]="{ 'has-error': (changePwdForm.submitted || newPassword.touched) && !newPassword.valid }">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" #newPassword="ngModel"
+                                   [(ngModel)]="user.newPassword" name="newPassword" placeholder="New Password*" required/>
                         </div>
-                    </form>
-                </div>
+                        <div class="help-block m-b-0" *ngIf="(changePwdForm.submitted || newPassword.touched) && !newPassword.valid">
+                            <small *ngIf="!newPassword.valid">New Password is required.</small>
+                        </div>
+                    </div>
+                    <div class="form-group"
+                         [ngClass]="{ 'has-error': (changePwdForm.submitted || confpassword.touched) && !confpassword.valid }">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="confpassword"
+                                   [(ngModel)]="user.confpassword" #confpassword="ngModel"
+                                   required  placeholder="Confirm Password*"/>
+                        </div>
+                        <div class="help-block m-b-0" *ngIf="(changePwdForm.submitted || confpassword.touched) && !confpassword.valid">
+                            <small *ngIf="!confpassword.valid">Confirm password is required.</small>
+                            <small *ngIf="confpassword.valid && (password.model != confpassword.model)">
+                                Password does not match
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-group m-b-0">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-success" [disabled]="!changePwdForm.form.valid">Save Changes</button>
+                        </div>
+                    </div>
+                </form>
             </div>
+        </div>
     </div>
 </div>

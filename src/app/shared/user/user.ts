@@ -4,4 +4,6 @@ export class User {
   email: string;
   password: string;
   newPassword : string;
+  role : string;
+  provider : string;
 }

@@ -3,6 +3,9 @@ export class Config {
 
     static user = {
         _id: "",
-        name: ""
+        email: "",
+        name: "",
+        role: "",
+        provider: ""
     };
 }
