@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 import { Contact } from '../shared/contacts/contact';
 import { ContactsService } from '../shared/contacts/contacts.service';
@@ -20,7 +19,7 @@ export class ContactFormComponent{
     contact : Contact;
 
     constructor(private router: Router, private _contactService: ContactsService,
-                 private activeRoute: ActivatedRoute, public toastr : ToastsManager){
+                 private activeRoute: ActivatedRoute){
         this.contact = new Contact();
         this.paramsSub = this.activeRoute.params.subscribe(params => this.paramContactId = params['id']);
 
@@ -40,16 +39,8 @@ export class ContactFormComponent{
     fnSaveContact(contact:any){
         this._contactService.fnSaveContact(contact,this.paramContactId)
             .subscribe(data =>{
-                this.toastr.success(data.name + ' of contact saved.', 'Success!', {toastLife: 3000});
-                //this.toastr.success(data.name + ' of contact saved.', 'Success!', {dismiss: 'controlled'})
-                //    .then((toast) => {
-                //        setTimeout(() => {
-                //            this.toastr.dismissToast(toast);
-                //        }, 3000);
-                //    });
                 this.router.navigate(['/contacts']);
             },error => {
-                this.toastr.error('There are something wrong! ' + error, 'Contact not saved.', {toastLife: 3000});
         })
     }
 

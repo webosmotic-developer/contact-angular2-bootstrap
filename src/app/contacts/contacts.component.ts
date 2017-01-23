@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { Router } from '@angular/router';
-import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { Contact } from '../shared/contacts/contact';
 import { ContactsService } from '../shared/contacts/contacts.service';
 
@@ -30,7 +29,7 @@ export class ContactsComponent {
         this.modal.open();
     }
 
-    constructor(private _contactsService: ContactsService, private router:Router, public toastr : ToastsManager){
+    constructor(private _contactsService: ContactsService, private router:Router){
         this.fnGetContacts();
     }
 
@@ -44,7 +43,6 @@ export class ContactsComponent {
                     this.isLoading = false;
                 },
                 (error) => {
-                    this.toastr.error('There are something wrong! '+error, 'For getting contact.', {toastLife: 3000});
                 }
 
             )
@@ -54,12 +52,10 @@ export class ContactsComponent {
         this._contactsService.fnDeleteContact(contactId)
             .subscribe(
             (data) => {
-                this.toastr.success('Contact deleted.', 'Success!', {toastLife: 3000});
                 this.fnGetContacts();
                 this.modal.close();
             },
             (error) => {
-                this.toastr.error('There are something wrong! '+error, 'Contact not deleted.', {toastLife: 3000});
             }
         )
     }

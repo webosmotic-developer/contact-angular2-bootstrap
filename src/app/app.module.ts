@@ -3,7 +3,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {HttpModule, JsonpModule} from '@angular/http';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
-import {ToastModule} from 'ng2-toastr/ng2-toastr';
 
 import './rxjs-extensions';
 
@@ -42,7 +41,6 @@ import { FilterContactArray } from './component/filters/filterContacts.pipe';
     ],
     imports: [
         BrowserModule,
-        ToastModule,
         FormsModule,
         HttpModule,
         JsonpModule,
