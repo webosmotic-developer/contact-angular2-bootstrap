@@ -29,7 +29,7 @@
                         <div class="form-group"
                              [ngClass]="{ 'has-error': (registerForm.submitted || email.touched) && !email.valid }">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                                 <input type="email" class="form-control" #email="ngModel"
                                        [(ngModel)]="user.email" name="email" placeholder="Enter a email"
                                        pattern='[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}' required/>
