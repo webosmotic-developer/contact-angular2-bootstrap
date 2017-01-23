@@ -11,6 +11,7 @@ import { Authentication } from "../shared/auth/authentication.service";
 })
 
 export class SignUpComponent {
+    isProcessing  : boolean = false;
     user: User;
 
     constructor(private router: Router, private _authService : Authentication){
@@ -20,12 +21,19 @@ export class SignUpComponent {
     }
 
     fnSignUp(user:any) {
+        this.isProcessing = true;
         this._authService.fnRegisterUser(user)
             .subscribe(
             (data) => {
+                this.isProcessing = false;
                 this.router.navigate(['/contacts']);
             },
             (error) => {
+                this.isProcessing = false;
             });
+    }
+
+    fnMatchPassword(user:any){
+        return user.password === user.confpassword;
     }
 }

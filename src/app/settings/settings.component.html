@@ -27,7 +27,7 @@
                               (ngSubmit)="updateProfileForm.form.valid && fnUpdateProfile(user)" novalidate>
                             <div class="form-group" [ngClass]="{ 'has-error': (updateProfileForm.submitted || name.touched) && !name.valid }">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user" style="width: 14px;"></i></span>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user" style="width: 14px;"></i></span>
                                     <input type="text" class="form-control" #name="ngModel"
                                            [(ngModel)]="user.name" name="name" placeholder="Name*" required/>
                                 </div>
@@ -41,7 +41,7 @@
                             <div class="form-group"
                                  [ngClass]="{ 'has-error': (updateProfileForm.submitted || email.touched) && !email.valid }">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                                     <input type="email" class="form-control" #email="ngModel"
                                            [(ngModel)]="user.email"  name="email" placeholder="Email*"
                                            pattern='[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,4}' required/>
@@ -55,8 +55,8 @@
                             </div>
                             <div class="form-group" [ngClass]="{ 'has-error': (updateProfileForm.submitted || role.touched) && !role.valid }">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-user-md" style="width: 14px;"></i></span>
-                                    <input type="text" class="form-control" #role="ngModel"
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                                    <input type="text" class="form-control" #role="ngModel" readonly="true"
                                            [(ngModel)]="user.role" name="role" placeholder="Role*" required/>
                                 </div>
                                 <div class="help-block m-b-0" *ngIf="(updateProfileForm.submitted || role.touched) && !role.valid">
@@ -84,7 +84,7 @@
 
                             <div class="form-group" [ngClass]="{ 'has-error': (changePwdForm.submitted || password.touched) && !password.valid }">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-lock" style="width: 14px;" aria-hidden="true"></i></span>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
                                     <input type="password" class="form-control" #password="ngModel"
                                            [(ngModel)]="user.password" name="password" placeholder="Current Password*" required/>
                                 </div>
@@ -96,7 +96,7 @@
                             <div class="form-group"
                                  [ngClass]="{ 'has-error': (changePwdForm.submitted || newPassword.touched) && !newPassword.valid }">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
                                     <input type="password" class="form-control" #newPassword="ngModel"
                                            [(ngModel)]="user.newPassword" name="newPassword" placeholder="New Password*" required/>
                                 </div>
@@ -107,7 +107,7 @@
                             <div class="form-group"
                                  [ngClass]="{ 'has-error': (changePwdForm.submitted || confpassword.touched) && !confpassword.valid }">
                                 <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
                                     <input type="password" class="form-control" name="confpassword"
                                            [(ngModel)]="user.confpassword" #confpassword="ngModel"
                                            required  placeholder="Confirm Password*"/>
