@@ -1,5 +1,5 @@
-## contact-web
-> This project is generated with [generator-angular2-typescript](https://github.com/shibbir/generator-angular2-typescript) version 0.10.1.
+## contacts-angular-2
+> This project is generated with [generator-angular2-typescript](https://github.com/shibbir/generator-angular2-typescript) version 0.10.6.
 
 ## Installation
 
