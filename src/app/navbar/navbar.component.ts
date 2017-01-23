@@ -29,7 +29,7 @@ export class NavbarComponent{
         this.isLoggedIn = undefined;
         Config.user = {};
         this._cookieService.remove('AUTH_TOKEN');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/sign-in']);
     }
 
 }

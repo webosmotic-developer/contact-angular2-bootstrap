@@ -51,8 +51,8 @@ const appRoutes: Routes = [
             }
         ]
     },
-    { path: 'login', component: SignInComponent, canActivate: [NotAuthenticateGuard]},
-    { path: 'register', component: SignUpComponent, canActivate: [NotAuthenticateGuard]}
+    { path: 'sign-in', component: SignInComponent, canActivate: [NotAuthenticateGuard]},
+    { path: 'sign-up', component: SignUpComponent, canActivate: [NotAuthenticateGuard]}
 ];
 
 export const appRoutingProviders: any[] = [];

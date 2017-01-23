@@ -1,88 +1,121 @@
-body {
-    font-family: Cambria, Georgia;
+.wrapper {
+    margin-top: 75px;
+    padding-left: 0;
 }
 
-h1 {
-    color: #369;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 250%;
-    font-weight: bold;
-    margin-top: 30px;
-    margin-bottom: 22px;
+.page-wrapper {
+    width: 100%;
+    padding: 0;
+    background-color: #fff;
 }
 
-.navbar-toggle {
-    display: block;
-    float:left
-}
+@media(min-width:768px) {
+    .wrapper {
+        margin-top: 25px;
+        padding-left: 225px;
+    }
 
-@media(min-width:768px){
-    .navbar-toggle {
-        float:left
+    .page-wrapper {
+        padding: 10px;
     }
 }
 
-.auth-form{
-    margin-top: 135px;
+/*----- START: Top Navigation -----*/
+
+.top-nav {
+    padding: 0 15px;
 }
 
-.page-container{
-    margin-top: 50px;
-    padding: 5px;
+.top-nav>li {
+    display: inline-block;
+    float: left;
 }
 
-.form-heading h3{
-    margin: 0;
+.top-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 20px;
 }
 
-.glyphicon-refresh-animate {
-    -animation: spin .7s infinite linear;
-    -webkit-animation: spin2 .7s infinite linear;
+.top-nav>.open>.dropdown-menu {
+    float: left;
+    position: absolute;
+    margin-top: 0;
+    border: 1px solid rgba(0,0,0,.15);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
 
-@-webkit-keyframes spin2 {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(360deg);}
+.top-nav>.open>.dropdown-menu>li>a {
+    white-space: normal;
+}
+/*----- END : Top Navigation -----*/
+
+
+/*----- START : Side Navigation -----*/
+@media(min-width:768px) {
+    .side-nav {
+        position: fixed;
+        top: 51px;
+        left: 225px;
+        width: 225px;
+        margin-left: -225px;
+        border: none;
+        border-radius: 0;
+        overflow-y: auto;
+        bottom: 0;
+        overflow-x: hidden;
+        padding-bottom: 40px;
+    }
+
+    .side-nav>li>a {
+        width: 225px;
+    }
+
+    .side-nav li a:hover,
+    .side-nav li a:focus {
+        outline: none;
+    }
 }
 
-@keyframes spin {
-    from { transform: scale(1) rotate(0deg);}
-    to { transform: scale(1) rotate(360deg);}
+.side-nav>li>ul {
+    padding: 0;
 }
 
-.contacts-header{
-    z-index: 1029;
-    margin-top: 50px;
-    min-height: 40px;
-    width: 100%;
-    background-color: #d4d4d4;
-    box-shadow: 0px 2px 1px #b3b3b3;
-}
-
-.contacts-header input{
-    width: calc(100% - 30px);
-    max-width: 250px;
-}
-
-.contacts-content{
-    margin-top: 100px;
-}
-
-.right-nav-menu {
-    margin-top:15px;
-}
-
-.right-nav-menu ul .dropdown-menu{
-    margin-top:15px;
-    margin-left: -73px;
-}
-
-.right-nav-menu ul li{
-    list-style: none;
-}
-
-.right-nav-menu ul .user-label{
+.side-nav>li>ul>li>a {
+    display: block;
+    padding: 10px 15px 10px 38px;
     text-decoration: none;
-    color: #eee;
+    color: #999;
 }
 
+.side-nav>li>ul>li>a:hover {
+    color: #fff;
+}
+/*----- END : Side Navigation -----*/
+
+/*----- START : Whiteframe ---*/
+.whiteframe-1 {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.whiteframe-2 {
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.whiteframe-3 {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.whiteframe-4 {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.whiteframe-5 {
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+/*----- END : Whiteframe ---*/
