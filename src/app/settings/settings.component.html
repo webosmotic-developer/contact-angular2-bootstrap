@@ -68,7 +68,8 @@
                             </div>
                             <div class="form-group m-b-0">
                                 <div class="controls">
-                                    <button type="submit" class="btn btn-success" [disabled]="!updateProfileForm.form.valid">Update</button>
+                                    <button type="submit" class="btn btn-success"
+                                            [disabled]="!updateProfileForm.form.valid || isProcessing">Update</button>
                                 </div>
                             </div>
                         </form>
@@ -79,49 +80,52 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Change Password</div>
                     <div class="panel-body">
-                        <form class="form-horizontal col-md-12" name="changePwdForm" #changePwdForm="ngForm"
-                              (ngSubmit)="changePwdForm.form.valid && fnChangePassword(user)" novalidate>
+                        <form class="form-horizontal col-md-12" name="changePwdForm" #changePwdForm="ngForm" novalidate>
 
-                            <div class="form-group" [ngClass]="{ 'has-error': (changePwdForm.submitted || password.touched) && !password.valid }">
+                            <div class="form-group" [ngClass]="{ 'has-error': password.touched && !password.valid }">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
                                     <input type="password" class="form-control" #password="ngModel"
                                            [(ngModel)]="user.password" name="password" placeholder="Current Password*" required/>
                                 </div>
-                                <div class="help-block m-b-0" *ngIf="(changePwdForm.submitted || password.touched) && !password.valid">
+                                <div class="help-block m-b-0" *ngIf="password.touched && !password.valid">
                                     <small *ngIf="!password.valid">password is required.</small>
                                 </div>
                             </div>
 
                             <div class="form-group"
-                                 [ngClass]="{ 'has-error': (changePwdForm.submitted || newPassword.touched) && !newPassword.valid }">
+                                 [ngClass]="{ 'has-error': newPassword.touched && !newPassword.valid }">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
                                     <input type="password" class="form-control" #newPassword="ngModel"
                                            [(ngModel)]="user.newPassword" name="newPassword" placeholder="New Password*" required/>
                                 </div>
-                                <div class="help-block m-b-0" *ngIf="(changePwdForm.submitted || newPassword.touched) && !newPassword.valid">
+                                <div class="help-block m-b-0" *ngIf="newPassword.touched && !newPassword.valid">
                                     <small *ngIf="!newPassword.valid">New Password is required.</small>
                                 </div>
                             </div>
                             <div class="form-group"
-                                 [ngClass]="{ 'has-error': (changePwdForm.submitted || confpassword.touched) && !confpassword.valid }">
+                                 [ngClass]="{ 'has-error': confpassword.touched && !confpassword.valid }">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
                                     <input type="password" class="form-control" name="confpassword"
                                            [(ngModel)]="user.confpassword" #confpassword="ngModel"
                                            required  placeholder="Confirm Password*"/>
                                 </div>
-                                <div class="help-block m-b-0" *ngIf="(changePwdForm.submitted || confpassword.touched) && !confpassword.valid">
+                                <div class="help-block m-b-0" *ngIf="confpassword.touched && !confpassword.valid">
                                     <small *ngIf="!confpassword.valid">Confirm password is required.</small>
-                                    <small *ngIf="confpassword.valid && (password.model != confpassword.model)">
-                                        Password does not match
-                                    </small>
+                                </div>
+                                <div class="help-block"
+                                     *ngIf="confpassword.touched && confpassword.valid && !fnMatchPassword(user)">
+                                    <small class="text-danger">Password does not match.</small>
                                 </div>
                             </div>
                             <div class="form-group m-b-0">
                                 <div class="controls">
-                                    <button type="submit" class="btn btn-success" [disabled]="!changePwdForm.form.valid">Save Changes</button>
+                                    <button class="btn btn-success"
+                                            [disabled]="!changePwdForm.form.valid || isProcessing"
+                                            (click)="changePwdForm.form.valid &&
+                                            fnMatchPassword(user) && fnChangePassword(user)">Save Changes</button>
                                 </div>
                             </div>
                         </form>

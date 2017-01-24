@@ -30,6 +30,7 @@ export class SignInComponent {
             },
             (error) => {
                 this.isProcessing = false;
+                alert('Invalid email or password.');
             });
     }
 }

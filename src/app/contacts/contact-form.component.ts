@@ -14,6 +14,7 @@ import { Config } from '../shared/config';
 })
 export class ContactFormComponent{
 
+    isProcessing  : boolean = false;
     paramsSub : any;
     paramContactId : string = null;
     contact : Contact;
@@ -37,11 +38,14 @@ export class ContactFormComponent{
     }
 
     fnSaveContact(contact:any){
+        this.isProcessing = true;
         this._contactService.fnSaveContact(contact,this.paramContactId)
             .subscribe(data =>{
+                this.isProcessing = false;
                 this.router.navigate(['/contacts']);
             },error => {
-        })
+                this.isProcessing = false;
+        });
     }
 
     fnFetchContactData(){

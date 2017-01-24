@@ -30,6 +30,9 @@ export class SignUpComponent {
             },
             (error) => {
                 this.isProcessing = false;
+                if(error.indexOf('422') > -1){
+                    alert('The specified email address is already in use.');
+                }
             });
     }
 
