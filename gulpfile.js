@@ -26,6 +26,8 @@ var paths = {
     systemjsConfig: 'src/systemjs.config.js',
     css: [
         'node_modules/bootstrap/dist/css/bootstrap.css',
+        'node_modules/bootstrap/dist/css/bootstrap-theme.css',
+        'src/css/margin.padding.css',
         'src/css/main.css'
     ],
     prod: 'dist/prod/',
@@ -55,9 +57,9 @@ gulp.task('inject:index', function () {
         'dist/prod/vendors.min.js',
         'dist/prod/app.min.js',
         'dist/prod/styles.min.css'
-    ], { read: false });
+    ], {read: false});
 
-    return target.pipe(plugins.inject(sources, { ignorePath: paths.prod, addRootSlash: false }))
+    return target.pipe(plugins.inject(sources, {ignorePath: paths.prod, addRootSlash: false}))
         .pipe(gulp.dest(paths.prod));
 });
 
@@ -72,19 +74,25 @@ gulp.task('tsc', function () {
 
 gulp.task('inline-ng2-templates', function () {
     return gulp.src(['src/**/*.ts'])
-        .pipe(inlineNg2Template({ base: 'src', useRelativePaths: false, indent: 0, removeLineBreaks: true, templateProcessor: minifyTemplate }))
+        .pipe(inlineNg2Template({
+            base: 'src',
+            useRelativePaths: false,
+            indent: 0,
+            removeLineBreaks: true,
+            templateProcessor: minifyTemplate
+        }))
         .pipe(tsProject())
         .pipe(gulp.dest(paths.tmp));
 });
 
-gulp.task('bundle:css', function() {
+gulp.task('bundle:css', function () {
     return gulp.src(paths.css)
         .pipe(plugins.concat('styles.min.css'))
         .pipe(plugins.cleanCss())
         .pipe(gulp.dest(paths.prod));
 });
 
-gulp.task('bundle:vendors', function() {
+gulp.task('bundle:vendors', function () {
     return gulp.src(paths.vendors)
         .pipe(plugins.sourcemaps.init())
         .pipe(plugins.concat('vendors.min.js'))
@@ -93,49 +101,53 @@ gulp.task('bundle:vendors', function() {
         .pipe(gulp.dest(paths.prod));
 });
 
-gulp.task('bundle:app', function() {
+gulp.task('bundle:app', function () {
     var builder = new Builder(paths.tmp, paths.systemjsConfig);
 
-    return builder.buildStatic('app/main.js', paths.prod + 'app.min.js', { minify: true, sourceMaps: true });
+    return builder.buildStatic('app/main.js', paths.prod + 'app.min.js', {minify: true, sourceMaps: true});
 });
 
-gulp.task('copy:assets', function() {
-    return gulp.src(paths.assets).pipe(gulp.dest(paths.dev)).pipe(plugins.connect.reload());;
+gulp.task('copy:assets', function () {
+    return gulp.src(paths.assets).pipe(gulp.dest(paths.dev)).pipe(plugins.connect.reload());
 });
 
-gulp.task('copy:index', function() {
+gulp.task('copy:index', function () {
     return gulp.src('src/index.html').pipe(gulp.dest(paths.prod));
 });
 
-gulp.task('clean:prod', function(done) {
+gulp.task('copy:fonts', function () {
+    return gulp.src(['node_modules/bootstrap/fonts/**']).pipe(gulp.dest(paths.prod + 'fonts/'));
+});
+
+gulp.task('clean:prod', function (done) {
     rimraf(paths.prod, done);
 });
 
-gulp.task('clean:dev', function(done) {
+gulp.task('clean:dev', function (done) {
     rimraf(paths.dev, done);
 });
 
-gulp.task('clean:tmp', function(done) {
+gulp.task('clean:tmp', function (done) {
     rimraf(paths.tmp, done);
 });
 
-gulp.task('build:prod', function(done) {
-    runSequence('clean:prod', 'inline-ng2-templates', 'bundle:css', 'bundle:vendors', 'bundle:app', 'inject:index', 'clean:tmp', done);
+gulp.task('build:prod', function (done) {
+    runSequence('clean:prod', 'inline-ng2-templates', 'bundle:css', 'bundle:vendors', 'bundle:app', 'inject:index', 'clean:tmp', 'copy:fonts', done);
 });
 
-gulp.task('serve:prod', function(done) {
+gulp.task('serve:prod', function (done) {
     runSequence('build:prod', ['connect:prod', 'watch'], done);
 });
 
-gulp.task('build:dev', function(done) {
+gulp.task('build:dev', function (done) {
     runSequence('clean:dev', 'tsc', 'copy:assets', done);
 });
 
-gulp.task('serve:dev', function(done) {
+gulp.task('serve:dev', function (done) {
     runSequence('build:dev', ['connect:dev', 'watch'], done);
 });
 
-gulp.task('connect:prod', function() {
+gulp.task('connect:prod', function () {
     plugins.connect.server({
         root: paths.prod,
         port: 3000,
@@ -144,7 +156,7 @@ gulp.task('connect:prod', function() {
     });
 });
 
-gulp.task('connect:dev', function() {
+gulp.task('connect:dev', function () {
     plugins.connect.server({
         root: [paths.dev, './'],
         port: 3000,
@@ -155,5 +167,5 @@ gulp.task('connect:dev', function() {
 
 gulp.task("watch", function () {
     gulp.watch(['src/**/*.ts'], ['tsc']);
-    gulp.watch(['src/**/*.html', 'src/**/*.css',  'src/**/*.js'], ['copy:assets']);
+    gulp.watch(['src/**/*.html', 'src/**/*.css', 'src/**/*.js'], ['copy:assets', 'copy:fonts']);
 });
