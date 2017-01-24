@@ -6,11 +6,11 @@ import {SignInComponent} from './signin/signin.component';
 import {SignUpComponent} from './signup/signup.component';
 import {ContactsComponent} from './contacts/contacts.component';
 import {ContactFormComponent} from './contacts/contact-form.component';
-import { SettingsComponent } from './settings/settings.component';
+import {SettingsComponent} from './settings/settings.component';
 
-import { AuthenticateGuard } from './shared/auth/authenticate-guard';
-import { NotAuthenticateGuard } from './shared/auth/not-authenticate-guard';
-import { UserResolve } from "./shared/auth/user-resolve.service";
+import {AuthenticateGuard} from './shared/auth/authenticate-guard';
+import {NotAuthenticateGuard} from './shared/auth/not-authenticate-guard';
+import {UserResolve} from "./shared/auth/user-resolve.service";
 
 
 const appRoutes: Routes = [
@@ -57,4 +57,4 @@ const appRoutes: Routes = [
 
 export const appRoutingProviders: any[] = [];
 
-export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes);
+export const routing: ModuleWithProviders = RouterModule.forRoot(appRoutes, { useHash: true });

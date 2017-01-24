@@ -27,7 +27,11 @@ export class NavbarComponent{
 
     fnLogOut(){
         this.isLoggedIn = undefined;
-        Config.user = {};
+        Config.user._id = '';
+        Config.user.email = '';
+        Config.user.name = '';
+        Config.user.role = '';
+        Config.user.provider = '';
         this._cookieService.remove('AUTH_TOKEN');
         this.router.navigate(['/sign-in']);
     }

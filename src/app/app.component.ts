@@ -1,4 +1,4 @@
-import {Component, ViewContainerRef } from '@angular/core';
+import {Component} from '@angular/core';
 
 
 @Component({
@@ -8,9 +8,7 @@ import {Component, ViewContainerRef } from '@angular/core';
 
 
 export class AppComponent{
-    constructor(private viewContainerRef:ViewContainerRef){
+    constructor(){
         console.log("App Initializing...");
-        // You need this small hack in order to catch application root view container ref
-        this.viewContainerRef = viewContainerRef;
     }
 }
